@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Addressable | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Addressables[TOC]  Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting started with Addr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Addressable">
+<meta property="og:url" content="http://example.com/2021/11/04/Addressable/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Addressables[TOC]  Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting started with Addr">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://z3.ax1x.com/2021/11/04/IekIC6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111051430180.png">
+<meta property="og:image" content="c:/Users/XD/AppData/Roaming/Typora/typora-user-images/image-20211104162948054.png">
+<meta property="og:image" content="c:/Users/XD/AppData/Roaming/Typora/typora-user-images/image-20211104163111655.png">
+<meta property="article:published_time" content="2021-11-04T11:56:13.000Z">
+<meta property="article:modified_time" content="2021-11-05T06:31:11.092Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/11/04/IekIC6.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Addressable" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/04/Addressable/" class="article-date">
+  <time class="dt-published" datetime="2021-11-04T11:56:13.000Z" itemprop="datePublished">2021-11-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Addressable
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Addressables"><a href="#Addressables" class="headerlink" title="Addressables"></a>Addressables</h1><p>[TOC]</p>
+<blockquote>
+<h2 id="Session-Goals-本篇文章的概述及目标"><a href="#Session-Goals-本篇文章的概述及目标" class="headerlink" title="Session Goals 本篇文章的概述及目标"></a>Session Goals 本篇文章的概述及目标</h2><h3 id="你将在本篇文章中，获得以下信息"><a href="#你将在本篇文章中，获得以下信息" class="headerlink" title="你将在本篇文章中，获得以下信息"></a>你将在本篇文章中，获得以下信息</h3><ul>
+<li>为什么我们的Unity项目需要资源管理系统</li>
+<li>如果开始上手Unity中最新的资源管理方式：Addressables</li>
+<li>可寻址资源与之前的资源管理系统对比是怎样的</li>
+<li>在项目中使用可寻址资源的好处</li>
+<li>可寻址资源与对象池的区别</li>
+</ul>
+<p>参考视频链接: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6IlIA2eLk0I"><em>Getting started with Addressables | Unite Now 2020</em></a></p>
+<p>参考文档链接: <a target="_blank" rel="noopener" href="https://docs.unity3d.com/Packages/com.unity.addressables@1.19/manual/index.html"><em>Unity Addressable Asset System</em></a></p>
+</blockquote>
+<h2 id="Conception-基本概念"><a href="#Conception-基本概念" class="headerlink" title="Conception 基本概念"></a>Conception 基本概念</h2><p>Addressables 可寻址资源系统提供了一套用来<strong>组织和打包游戏资源的工具</strong>，以及在运行时<strong>加载</strong>和<strong>释放</strong>这些资源的API</p>
+<p>当一个asset被设置为<code>Addressable</code>之后，我们就可以通过这个资源的<code>地址</code>在任何地方去加载和使用这个资源，不论这个资源是在本地还是在云端，Addressable系统会定位找到指定的资源并将它们返回给我们来使用。</p>
+<h2 id="Advantage-可寻址资源系统的优势及特点"><a href="#Advantage-可寻址资源系统的优势及特点" class="headerlink" title="Advantage 可寻址资源系统的优势及特点"></a>Advantage 可寻址资源系统的优势及特点</h2><h3 id="可寻址资源系统将会在以下几个方面改进我们的项目："><a href="#可寻址资源系统将会在以下几个方面改进我们的项目：" class="headerlink" title="可寻址资源系统将会在以下几个方面改进我们的项目："></a>可寻址资源系统将会在以下几个方面改进我们的项目：</h3><ul>
+<li><strong>灵活性</strong>：可以自由配置项目中资源的位置，比如你可以直接放在包体里面，直接让玩家随游戏一起完整下载；或者你也可以把部分资源单独放在云端，等玩家需要用到的时候再去下载。[另外假如要修改资源的地址，也不需要修改代码，只需要更改相关的配置就行了，随时都能更改，无需牵动代码。](You can change where you access a specific asset at any stage in your project without rewriting any game code.)</li>
+<li><strong>依赖管理</strong>：[当你加载一个资源的时候，系统会自动加载跟这个资源相关的所有依赖项，以便在系统将内容返回之前加载所有网格、着色器、动画和其他资产。](The system automatically loads all dependencies of any assets you load, so that all meshes, shaders, animations, and other assets load before the system returns the content to you.)</li>
+<li><strong>内存管理</strong>：Addressables系统会帮助我们加载资源，同时也会帮助我们卸载不再需要的资源，它会自动进行引用计数，从而及时地做内存的清理和维护。并且Addressables系统还提供了一个非常成熟且健壮的profiler工具</li>
+<li></li>
+</ul>
+<h5 id="first-and-foremost-——-grab-that-Addressables-Assets-package"><a href="#first-and-foremost-——-grab-that-Addressables-Assets-package" class="headerlink" title="first and foremost —— grab that Addressables Assets package"></a>first and foremost —— grab that Addressables Assets package</h5><ol>
+<li><p>Installing the Addressable Assets package at <code>package manager</code></p>
+<p><img src="https://z3.ax1x.com/2021/11/04/IekIC6.png" alt="screenshot"></p>
+</li>
+<li><p>Marking Assets as addressable</p>
+<p>There are two ways to mark an item as an Addressable Asset:</p>
+<ol>
+<li><p>Select an asset and click the <code>Addressable</code> check box in the <code>Inspector</code> window.</p>
+<p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111051430180.png" alt="设置资源为Adreesable"></p>
+</li>
+<li><p>Open the Addressable window and drag the asset into it.</p>
+<p><img src="C:\Users\XD\AppData\Roaming\Typora\typora-user-images\image-20211104162948054.png" alt="image-20211104162948054"></p>
+<p><img src="C:\Users\XD\AppData\Roaming\Typora\typora-user-images\image-20211104163111655.png" alt="image-20211104163111655"></p>
+</li>
+</ol>
+</li>
+<li><p>The default address for our asset is the path to the Asset in our project. For example <code>Assets/Prefabs/Sphere.prefab</code>.</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/04/Addressable/" data-id="ckvkwe9qj00007k7679j829tq" data-title="Addressable" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/04/my-first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">my first blog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/11/04/Addressable/">Addressable</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/04/my-first-blog/">my first blog</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/04/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
