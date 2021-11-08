@@ -9,19 +9,19 @@
   <meta name="description" content="Addressables[TOC] Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting started with Addre">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Addressable">
-<meta property="og:url" content="http://example.com/2021/11/04/Addressable/index.html">
+<meta property="og:url" content="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Addressables[TOC] Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting started with Addre">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://z3.ax1x.com/2021/11/04/IekIC6.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081743356.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111051430180.png">
-<meta property="og:image" content="c:/Users/XD/AppData/Roaming/Typora/typora-user-images/image-20211104162948054.png">
-<meta property="og:image" content="c:/Users/XD/AppData/Roaming/Typora/typora-user-images/image-20211104163111655.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081746860.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081747273.png">
 <meta property="article:published_time" content="2021-11-04T11:56:13.000Z">
-<meta property="article:modified_time" content="2021-11-08T03:36:03.436Z">
+<meta property="article:modified_time" content="2021-11-08T10:05:42.032Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://z3.ax1x.com/2021/11/04/IekIC6.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081743356.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -78,9 +78,9 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Addressable" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-可寻址资源" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/11/04/Addressable/" class="article-date">
+    <a href="/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" class="article-date">
   <time class="dt-published" datetime="2021-11-04T11:56:13.000Z" itemprop="datePublished">2021-11-04</time>
 </a>
     
@@ -113,14 +113,17 @@
 <h2 id="Conception-基本概念"><a href="#Conception-基本概念" class="headerlink" title="Conception 基本概念"></a>Conception 基本概念</h2><p>Addressables 可寻址资源系统提供了一套用来<strong>组织和打包游戏资源的工具</strong>，以及在运行时<strong>加载</strong>和<strong>释放</strong>这些资源的API</p>
 <p>当一个asset被设置为<code>Addressable</code>之后，我们就可以通过这个资源的<code>地址</code>在任何地方去加载和使用这个资源，不论这个资源是在本地还是在云端，Addressable系统会定位找到指定的资源并将它们返回给我们来使用。</p>
 <h2 id="Advantage-可寻址资源系统的优势及特点"><a href="#Advantage-可寻址资源系统的优势及特点" class="headerlink" title="Advantage 可寻址资源系统的优势及特点"></a>Advantage 可寻址资源系统的优势及特点</h2><h3 id="可寻址资源系统将会在以下几个方面改进我们的项目："><a href="#可寻址资源系统将会在以下几个方面改进我们的项目：" class="headerlink" title="可寻址资源系统将会在以下几个方面改进我们的项目："></a>可寻址资源系统将会在以下几个方面改进我们的项目：</h3><ul>
-<li><strong>灵活性</strong>：可以自由配置项目中资源的位置，比如你可以直接放在包体里面，直接让玩家随游戏一起完整下载；或者你也可以把部分资源单独放在云端，等玩家需要用到的时候再去下载。[另外假如要修改资源的地址，也不需要修改代码，只需要更改相关的配置就行了，随时都能更改，无需牵动代码。](You can change where you access a specific asset at any stage in your project without rewriting any game code.)</li>
-<li><strong>依赖管理</strong>：[当你加载一个资源的时候，系统会自动加载跟这个资源相关的所有依赖项，以便在系统将内容返回之前加载所有网格、着色器、动画和其他资产。](The system automatically loads all dependencies of any assets you load, so that all meshes, shaders, animations, and other assets load before the system returns the content to you.)</li>
+<li><strong>灵活性</strong>：可以自由配置项目中资源的位置，比如你可以直接放在包体里面，直接让玩家随游戏一起完整下载；或者你也可以把部分资源单独放在云端，等玩家需要用到的时候再去下载。另外假如要修改资源的地址，也不需要修改代码，只需要更改相关的配置就行了，随时都能更改，无需牵动代码。(You can change where you access a specific asset at any stage in your project without rewriting any game code.)</li>
+<li><strong>依赖管理</strong>：当你加载一个资源的时候，系统会自动加载跟这个资源相关的所有依赖项，以便在系统将内容返回之前加载所有网格、着色器、动画和其他资产。(The system automatically loads all dependencies of any assets you load, so that all meshes, shaders, animations, and other assets load before the system returns the content to you.)</li>
 <li><strong>内存管理</strong>：Addressables系统会帮助我们加载资源，同时也会帮助我们卸载不再需要的资源，它会自动进行引用计数，从而及时地做内存的清理和维护。并且Addressables系统还提供了一个非常成熟且健壮的profiler工具</li>
-<li></li>
+<li><strong>资源打包</strong>：即使移动资源的位置或者改变资源的命名，它也能够通过映射和复杂的依赖关系链来有效率地自动打包AssetBundles。我们可以将一部分资源放到云端，在安装好应用/游戏之后再开始下载，以此来减少初始包体大小。</li>
 </ul>
-<h5 id="first-and-foremost-——-grab-that-Addressables-Assets-package"><a href="#first-and-foremost-——-grab-that-Addressables-Assets-package" class="headerlink" title="first and foremost —— grab that Addressables Assets package"></a>first and foremost —— grab that Addressables Assets package</h5><ol>
+<p><code>⭐Note: Addressables 系统是基于 AssetBundles 去构建的，如果我们想要在项目中使用AssetBundles但是又不想写详细的管理代码，那么就应该使用 Addressables 系统来管理我们的资源.</code></p>
+<h2 id="给现有项目添加Addressables系统"><a href="#给现有项目添加Addressables系统" class="headerlink" title="给现有项目添加Addressables系统"></a>给现有项目添加Addressables系统</h2><p>如果要将现有的项目应用Addressables系统来管理资源，只需要通过包管理器去安装一个Addressables package（下文有安装方法）就可以了，安装完成后需要给所有的资源指派他们的“地址（addresses)”并且需要重构相关的运行时的资源加载卸载调用等代码。（下方的<code>升级到Addressabls章节</code>有更多详细的信息）</p>
+<p>虽然可以在项目的任何阶段开始应用Addressables系统，但是肯定还是最开始的时候就用比较好，避免后期代码重构和资源重新设置的一些工作时间上的消耗。</p>
+<h2 id="Start-开始使用"><a href="#Start-开始使用" class="headerlink" title="Start 开始使用"></a>Start 开始使用</h2><h3 id="first-and-foremost-——-grab-that-Addressables-Assets-package"><a href="#first-and-foremost-——-grab-that-Addressables-Assets-package" class="headerlink" title="first and foremost —— grab that Addressables Assets package"></a>first and foremost —— grab that Addressables Assets package</h3><ol>
 <li><p>Installing the Addressable Assets package at <code>package manager</code></p>
-<p><img src="https://z3.ax1x.com/2021/11/04/IekIC6.png" alt="screenshot"></p>
+<p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081743356.png"></p>
 </li>
 <li><p>Marking Assets as addressable</p>
 <p>There are two ways to mark an item as an Addressable Asset:</p>
@@ -129,8 +132,8 @@
 <p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111051430180.png" alt="设置资源为Adreesable"></p>
 </li>
 <li><p>Open the Addressable window and drag the asset into it.</p>
-<p><img src="C:\Users\XD\AppData\Roaming\Typora\typora-user-images\image-20211104162948054.png" alt="image-20211104162948054"></p>
-<p><img src="C:\Users\XD\AppData\Roaming\Typora\typora-user-images\image-20211104163111655.png" alt="image-20211104163111655"></p>
+<p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081746860.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081747273.png"></p>
 </li>
 </ol>
 </li>
@@ -141,7 +144,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/Addressable/" data-id="ckvq4xvf0000038769emb2y70" data-title="Addressable" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvqi2hri0002f876a91r7mds" data-title="Addressable" class="article-share-link">Share</a>
       
       
       
@@ -201,11 +204,15 @@
       <ul>
         
           <li>
+            <a href="/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/05/hello-world/">Hello World</a>
           </li>
         
           <li>
-            <a href="/2021/11/04/Addressable/">Addressable</a>
+            <a href="/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/">Addressable</a>
           </li>
         
           <li>
