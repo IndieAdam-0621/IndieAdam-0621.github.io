@@ -71,6 +71,57 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/05/hello-world/" class="article-date">
+  <time class="dt-published" datetime="2021-11-05T07:04:30.019Z" itemprop="datePublished">2021-11-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/05/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/05/hello-world/" data-id="ckvq4njrv0000c876hapz68xi" data-title="Hello World" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Addressable" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/04/Addressable/" class="article-date">
@@ -94,7 +145,6 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
         <h1 id="Addressables"><a href="#Addressables" class="headerlink" title="Addressables"></a>Addressables</h1><p>[TOC]</p>
-<blockquote>
 <h2 id="Session-Goals-本篇文章的概述及目标"><a href="#Session-Goals-本篇文章的概述及目标" class="headerlink" title="Session Goals 本篇文章的概述及目标"></a>Session Goals 本篇文章的概述及目标</h2><h3 id="你将在本篇文章中，获得以下信息"><a href="#你将在本篇文章中，获得以下信息" class="headerlink" title="你将在本篇文章中，获得以下信息"></a>你将在本篇文章中，获得以下信息</h3><ul>
 <li>为什么我们的Unity项目需要资源管理系统</li>
 <li>如果开始上手Unity中最新的资源管理方式：Addressables</li>
@@ -104,7 +154,6 @@
 </ul>
 <p>参考视频链接: <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=6IlIA2eLk0I"><em>Getting started with Addressables | Unite Now 2020</em></a></p>
 <p>参考文档链接: <a target="_blank" rel="noopener" href="https://docs.unity3d.com/Packages/com.unity.addressables@1.19/manual/index.html"><em>Unity Addressable Asset System</em></a></p>
-</blockquote>
 <h2 id="Conception-基本概念"><a href="#Conception-基本概念" class="headerlink" title="Conception 基本概念"></a>Conception 基本概念</h2><p>Addressables 可寻址资源系统提供了一套用来<strong>组织和打包游戏资源的工具</strong>，以及在运行时<strong>加载</strong>和<strong>释放</strong>这些资源的API</p>
 <p>当一个asset被设置为<code>Addressable</code>之后，我们就可以通过这个资源的<code>地址</code>在任何地方去加载和使用这个资源，不论这个资源是在本地还是在云端，Addressable系统会定位找到指定的资源并将它们返回给我们来使用。</p>
 <h2 id="Advantage-可寻址资源系统的优势及特点"><a href="#Advantage-可寻址资源系统的优势及特点" class="headerlink" title="Advantage 可寻址资源系统的优势及特点"></a>Advantage 可寻址资源系统的优势及特点</h2><h3 id="可寻址资源系统将会在以下几个方面改进我们的项目："><a href="#可寻址资源系统将会在以下几个方面改进我们的项目：" class="headerlink" title="可寻址资源系统将会在以下几个方面改进我们的项目："></a>可寻址资源系统将会在以下几个方面改进我们的项目：</h3><ul>
@@ -136,7 +185,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/Addressable/" data-id="ckvkwe9qj00007k7679j829tq" data-title="Addressable" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/Addressable/" data-id="ckvq4njry0001c8760n21bzl8" data-title="Addressable" class="article-share-link">Share</a>
       
       
       
@@ -174,58 +223,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/my-first-blog/" data-id="ckvkw64xu0000tw764p7pf578" data-title="my first blog" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2021/11/04/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2021-11-04T11:50:43.472Z" itemprop="datePublished">2021-11-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2021/11/04/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/hello-world/" data-id="ckvkw2p7x00009g76f5mxd6sx" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/my-first-blog/" data-id="ckvq4njs30002c8762hhxg0aa" data-title="my first blog" class="article-share-link">Share</a>
       
       
       
@@ -268,15 +266,15 @@
       <ul>
         
           <li>
+            <a href="/2021/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/04/Addressable/">Addressable</a>
           </li>
         
           <li>
             <a href="/2021/11/04/my-first-blog/">my first blog</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/04/hello-world/">Hello World</a>
           </li>
         
       </ul>
