@@ -6,12 +6,12 @@
   
   <title>可寻址资源管理系统 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Addressables[TOC] Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting started with Addre">
+  <meta name="description" content="Get Started With Addressables[TOC] Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="可寻址资源管理系统">
 <meta property="og:url" content="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Addressables[TOC] Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting started with Addre">
+<meta property="og:description" content="Get Started With Addressables[TOC] Session Goals 本篇文章的概述及目标你将在本篇文章中，获得以下信息 为什么我们的Unity项目需要资源管理系统 如果开始上手Unity中最新的资源管理方式：Addressables 可寻址资源与之前的资源管理系统对比是怎样的 在项目中使用可寻址资源的好处 可寻址资源与对象池的区别  参考视频链接: Getting s">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081743356.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111051430180.png">
@@ -19,8 +19,10 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081942373.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081747273.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081955521.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091620815.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091649725.png">
 <meta property="article:published_time" content="2021-11-04T11:56:13.000Z">
-<meta property="article:modified_time" content="2021-11-08T12:13:22.613Z">
+<meta property="article:modified_time" content="2021-11-09T09:59:25.644Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081743356.png">
@@ -102,7 +104,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Addressables"><a href="#Addressables" class="headerlink" title="Addressables"></a>Addressables</h1><p>[TOC]</p>
+        <h1 id="Get-Started-With-Addressables"><a href="#Get-Started-With-Addressables" class="headerlink" title="Get Started With Addressables"></a>Get Started With Addressables</h1><p>[TOC]</p>
 <h2 id="Session-Goals-本篇文章的概述及目标"><a href="#Session-Goals-本篇文章的概述及目标" class="headerlink" title="Session Goals 本篇文章的概述及目标"></a>Session Goals 本篇文章的概述及目标</h2><h3 id="你将在本篇文章中，获得以下信息"><a href="#你将在本篇文章中，获得以下信息" class="headerlink" title="你将在本篇文章中，获得以下信息"></a>你将在本篇文章中，获得以下信息</h3><ul>
 <li>为什么我们的Unity项目需要资源管理系统</li>
 <li>如果开始上手Unity中最新的资源管理方式：Addressables</li>
@@ -160,18 +162,69 @@
 <p>⭐如果将<strong>Resources文件夹</strong>里面的一个资源文件设置为Adressable的话，Unity会把这个文件<strong>从Resources文件夹中移出</strong>，设置为Addressable的资源<strong>可以放在除了Resources文件夹以外的任何文件夹</strong>。</p>
 <h4 id="使用标记为Adressable资源的流程："><a href="#使用标记为Adressable资源的流程：" class="headerlink" title="使用标记为Adressable资源的流程："></a>使用标记为Adressable资源的流程：</h4><p>要加载一个Addressable资源大体可以通过以下方式：</p>
 <ul>
-<li><p>用一个引用资源的AssetReference</p>
-</li>
-<li><p>用它的地址字符串</p>
-</li>
-<li><p>使用分配给资源的标签</p>
-</li>
+<li>用一个引用资源的AssetReference</li>
+<li>用它的地址字符串</li>
+<li>使用分配给资源的标签</li>
 </ul>
+<h5 id="（一）通过资源引用-AssetReference"><a href="#（一）通过资源引用-AssetReference" class="headerlink" title="（一）通过资源引用 AssetReference"></a>（一）通过资源引用 AssetReference</h5><h5 id="（二）通过地址加载"><a href="#（二）通过地址加载" class="headerlink" title="（二）通过地址加载"></a>（二）通过地址加载</h5><p>（加载单个资源）通过地址字符串加载资源，要记得用完了还要释放掉它。</p>
+<h5 id="（三）通过标签加载"><a href="#（三）通过标签加载" class="headerlink" title="（三）通过标签加载"></a>（三）通过标签加载</h5><p>（加载多个资源）可以通过标签加载标签相同的一批资源</p>
+<h2 id="管理可寻址资源"><a href="#管理可寻址资源" class="headerlink" title="管理可寻址资源"></a>管理可寻址资源</h2><p>通过 Addressables <strong>Group</strong> 窗口去管理可寻址化资源，在该窗口中可以创建可寻址化资源<strong>组</strong>：<strong>Addressable Group</strong>，可以将可寻址化资源在这些组之间移动，给这些资源分配地址和标签。</p>
+<p>最开始的时候这里面有一个默认的组，设置为可寻址化的资源都会自动放到这个默认组里，但是为了后期方便管理（资源分类、加载、内存等等），最好是添加不同的分组，给资源分类放置，具体根据项目情况决定。</p>
+<p>资源组的关键设置（右键单击一个资源组，点击 Inspect Group Settings）：<img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091620815.png" alt="资源组的几个主要设置"></p>
+<ul>
+<li>构建路径 Build Path：资源内容构建完成后，将这些内容存储到哪里</li>
+<li>加载路径 Load Path：游戏在运行时加载构建完成后的资源的路径</li>
+<li>包模式 Bundle Mode：资源打包的方式<ul>
+<li><strong>Pack Together</strong> 将该资源组中的所有资源打进一个包里 </li>
+<li><strong>Pack Separate</strong> 资源组中的每个资源单独打包 （当我们将一个文件夹设置为 Addressable 并且想要所有内容构建在一起时特别有用）</li>
+<li><strong>Pack Together By Label</strong> 将标签相同的资源打在一个包里</li>
+</ul>
+</li>
+<li>内容更新限制 Content update restriction：开启这个选项的话后期可以发布一些比较小的更新，可以构建内容更新包，如果你要发布的游戏不需要从远程下载更新或者额外内容，后期也不用热更，那这个设置就可以不管了。</li>
+</ul>
+<h2 id="构建可寻址化资源"><a href="#构建可寻址化资源" class="headerlink" title="构建可寻址化资源"></a>构建可寻址化资源</h2><p>可寻址化资源的构建过程会基于之前的<code>资源组设置</code>和<code>Editor在当前平台的设置</code>将我们安置在可寻址资源分组(Addressables groups)中的资源转化为 AssetBundles。</p>
+<p>在Unity 2021.2以上的版本中，我们可以将可寻址资源的构建作为游戏或应用构建的一部分去处理，或者也可以将二者分开，在构建整体游戏或应用前先构建可寻址化资源。如果设置了让播放器（打包出的游戏或应用程序）和可寻址化资源构建一体化的话，当通过基本的<strong>Build</strong>功能或<strong>Build and Run</strong>功能去构建应用的时候，Unity会在真正构建应用前先构建可寻址化资源（Pre-Build)。</p>
+<p>在Unity早期版本中，如果要分开构建资源和应用，需要在 <strong>Addressable Group 窗口</strong> 的 <strong>Build</strong> 菜单中去手动点击构建：<img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091649725.png" alt="手动构建 Addressable Assets"></p>
+<p>之后如果构建应用的话，Unity会使用最近构建过的Addressable Assets针对当前平台进行构建。我们也可以自定义构建脚本来实现可寻址资源构建自动化。</p>
+<p>关于上图 <strong>Build</strong> 菜单中的几个选项：</p>
+<ul>
+<li><strong>New Build 使用特定的脚本来进行构建</strong>：如果没有自定义脚本的话，就是用Unity默认的脚本进行构建。</li>
+<li><strong>Update a Previous Build 更新之前的一个构建结果</strong>：要更新之前的一个构建，可寻址化系统需要之前构建所产生的 <code>addressables_content_state.bin</code> 文件，这个文件被放在项目的 <code>Assets/AddressableAssetsData/Platform</code> 下。</li>
+<li><strong>Clean Build</strong> 删除之前构建的缓存</li>
+</ul>
+<p>默认情况下，创建出来的文件会放置到配置文件中所设置的 <strong>LocalBuildPath</strong> 和 <strong>RemoteBuildPath</strong> 中，这些文件包含了Unity构建应用时所需要的 AssetBundles(.bundle), catalog JSON, hash files, setting files.</p>
+<table>
+<thead>
+<tr>
+<th>⚠注意<br />在大多数情况下，不应该修改默认的本地构建路径或本地加载路径，如果修改了的话，则必须在构建游戏或应用前将自定义路径下的资源文件手动复制到项目的 <code>StreamingAssets</code> 文件夹中。并且需要注意的是，如果设置了资源应用打包一体化的话（就是在构建应用的同时构建资源），这些自定义的路径也不会包含在其中！！！</th>
+</tr>
+</thead>
+</table>
+<p>如果之前的Build Path设置的是远程路径，那还需要手动上传所有的 AssetBundles，catalog以及hash files到服务器主机上。如果项目用不到远程下载资源的功能，那就把构建路径和加载路径都设置为本地就可以。</p>
+<p>构建可寻址化资源也会创建出一些在构建应用时不会直接使用的文件：</p>
+<ul>
+<li><code>addressables_content_state.bin</code>：用于构建更新包，如果需要动态更新（热更？）之前构建过的内容，则需要存下每个旧的构建包对应的该文件。</li>
+<li><code>AddressablesBuildTEP.json</code>：记录构建性能数据</li>
+</ul>
+<h3 id="开始完整的内容构建"><a href="#开始完整的内容构建" class="headerlink" title="开始完整的内容构建"></a>开始完整的内容构建</h3><ol>
+<li>在 <strong>Build Settings</strong> 窗口中选择想要构建的平台 <strong>Platform Target</strong></li>
+<li>打开 <strong>Addressables Groups</strong> 窗口</li>
+<li>通过Addressables Groups窗口中的构建按钮构建资源</li>
+</ol>
+<p>构建流程开始</p>
+<p>资源构建完成后就可以开始构建应用了，并且可以将之前设置的 <strong>RemoteBuildPath</strong> 路径下的文件上传到远程服务器上（CDN）</p>
+<table>
+<thead>
+<tr>
+<th>⚠重要：<br />如果你打算在不重新构建应用的情况下发布远程更新，你必须保留每一个已发布的构建的 <code>addressables_content_state.bin</code> 文件，如果没有这个文件的话，就只能重新构建完整的资源和应用了</th>
+</tr>
+</thead>
+</table>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvqi4y6x0002go765vxcaq7x" data-title="可寻址资源管理系统" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvrvy5g00002ug761xyk9ycm" data-title="可寻址资源管理系统" class="article-share-link">Share</a>
       
       
       
