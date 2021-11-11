@@ -21,8 +21,9 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081955521.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091620815.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091649725.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091939791.png">
 <meta property="article:published_time" content="2021-11-04T11:56:13.000Z">
-<meta property="article:modified_time" content="2021-11-09T09:59:25.644Z">
+<meta property="article:modified_time" content="2021-11-09T13:06:21.090Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111081743356.png">
@@ -220,11 +221,20 @@
 </tr>
 </thead>
 </table>
-
+<h2 id="远程资源分配-远程内容分发"><a href="#远程资源分配-远程内容分发" class="headerlink" title="远程资源分配 / 远程内容分发"></a>远程资源分配 / 远程内容分发</h2><p>你可以在 Addressables 的支持下通过内容分发网络 (CDN：Content Delivery Network) 或其他托管服务远程分发内容。Unity提供了Unity云（CCD: Cloud Content Delivery），当然也可以使用其他的CDN服务。</p>
+<p>在构建远程分发内容之前，这些事情必须先搞定：</p>
+<ul>
+<li>勾选 <strong>Build Remote Catalog</strong><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111091939791.png" alt="勾选 Build Remote Catalog"></li>
+<li>在我们发布内容所用的配置文件中配置 <strong>RemoteLoadPath</strong> ，用来映射远程URL。</li>
+<li>每个需要远程分发的资源包都需要将它的 <strong>Build Path</strong> 设置为 <strong>RemoteBuildPath</strong>，将 <strong>Load Path</strong> 设置为 <strong>RemoteLoadPath</strong>。</li>
+<li>在 <strong>Build Setting</strong> 窗口中设置想要打包导出的平台</li>
+</ul>
+<p>最后要记得上传生成的资源文件（用于远程分发的资源文件）到CDN或其他远程服务器。</p>
+<h2 id="增量内容更新-Incremental-content-updates"><a href="#增量内容更新-Incremental-content-updates" class="headerlink" title="增量内容更新 Incremental content updates"></a>增量内容更新 Incremental content updates</h2>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvrvy5g00002ug761xyk9ycm" data-title="可寻址资源管理系统" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvuf19pd0002mg76hv2tffpc" data-title="可寻址资源管理系统" class="article-share-link">Share</a>
       
       
       
