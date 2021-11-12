@@ -71,6 +71,125 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-在Editor中管理Addressables" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/" class="article-date">
+  <time class="dt-published" datetime="2021-11-11T09:10:40.000Z" itemprop="datePublished">2021-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/">在Editor中管理Addressables</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Managing-Addressables-in-the-Editor"><a href="#Managing-Addressables-in-the-Editor" class="headerlink" title="Managing Addressables in the Editor"></a>Managing Addressables in the Editor</h1><h2 id="Asset-References"><a href="#Asset-References" class="headerlink" title="Asset References"></a>Asset References</h2><p><code>AssetReference</code> 是一个可以用来引用可寻址化资源的类型。</p>
+<p>AssetReference类可以在MonoBehaviour和ScriptableObject中使用，当为MonoBehaviour对象或者ScriptableObject对象添加一个可序列化的filed时，我们就可以在这个对象的Inspector面板上去为这个field赋值，我们可以通过类型和标签来限制field的赋值类型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111111932001.png" alt="AssetReference field 可以直接将资源赋值上去"></p>
+<p>上图中的各种资源引用（AssetReference可以直接用 Addressable Asset 赋值，把需要引用的资源拖拽到对应的field中去即可）</p>
+<p>如果拖拽了一个没有设置为可寻址化的资源到这里的field中，Unity将会自动把这个资源变成可寻址资源并将它添加到默认的addressables group。</p>
+<table>
+<thead>
+<tr>
+<th>⚠注意：<br />如果要将一个Addressables Group中的资源分配到 AssetReference field 中，那么这个组的 高级选项中的<strong>Include GUID in Catalog</strong> 选项必须要勾选上。<strong>Include GUID in Catalog</strong> 选项默认是勾选的。</th>
+</tr>
+</thead>
+</table>
+<h3 id="AssetReference-types"><a href="#AssetReference-types" class="headerlink" title="AssetReference types"></a>AssetReference types</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/" data-id="ckvw7q76j0004a0764vul55l7" data-title="在Editor中管理Addressables" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Addressables系统总览" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/11/11/Addressables%E7%B3%BB%E7%BB%9F%E6%80%BB%E8%A7%88/" class="article-date">
+  <time class="dt-published" datetime="2021-11-11T07:44:42.000Z" itemprop="datePublished">2021-11-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2021/11/11/Addressables%E7%B3%BB%E7%BB%9F%E6%80%BB%E8%A7%88/">Addressables系统总览</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Overview-of-the-Addressables-system"><a href="#Overview-of-the-Addressables-system" class="headerlink" title="Overview of the Addressables system"></a>Overview of the Addressables system</h1><p>可寻址化为我们提供了一个可以与项目共同发展共同成长的系统。</p>
+<p>本文设计的专有名词及其概念：</p>
+<ol>
+<li><strong>Asset address:</strong> 标记可寻址资源的一个字符串id，我们可以通过一个地址来加载我们想要的资源</li>
+<li><strong>AssetReferences:</strong> </li>
+<li><strong>Label:</strong> 可以分配给一类资源的标签，通过这个标签可以加载与这个标签相关的所有资源</li>
+<li><strong>Asset location:</strong> 一个运行时的object，</li>
+</ol>
+<p>⭐默认情况下，Addressables是通过AssetBundles来打包我们项目中的资源的，不过我们也可以通过 自定义一个实现<code>IResourceProvider</code> 接口的类来通过其他方式操作和管理我们的资源。</p>
+<h2 id="Asset-addresses-资源地址（索引）"><a href="#Asset-addresses-资源地址（索引）" class="headerlink" title="Asset addresses 资源地址（索引）"></a>Asset addresses 资源地址（索引）</h2><p>可寻址系统的一个重要特点就是我们会为资源分配地址，并通过这些地址在运行时加载这些资源。</p>
+<p>可寻址化资源管理器会在内容目录(content catalog)中寻找你指定的地址，并由此找到所要加载的资源的位置。（这些资源可以是构建在应用内的(build-in application)，资源管理器会先加载你要加载的资源的依赖项，如果有需要的话还会从远端下载。</p>
+<p>由于这个地址与资源的实际存储的位置并不是绑定的关系，这就为管理和操作资源提供了更高的灵活性（不管是在Editor中还是在运行时），地址(address)与资源的实际存储位置是由<code>Content catalogs</code>映射的。</p>
+<p>我们的资源应该是只有唯一的一个地址，但是这个地址可以是不唯一的（可以分配给很多不同的资源），比方说我们的一个资源有很多变种（蓝色T恤，白色T恤。。。），那这些资源可以是同一个adress，但是可以额外通过标签去区分它们：</p>
+<ul>
+<li>Assets 1: address: “t_shirt_texture”, label:”blue”</li>
+<li>Assets 2: address: “t_shirt_texture”, label:”white”</li>
+</ul>
+<p>可寻址系统的API方法中有些是只会加载一个资源的，比如 <code>LoadAssetAsync</code>，它只会加载你指定的address对应的一个资源，如果说你把这个address分配给了好多个资源的话，这个方法会返回它找到的这些资源中的第一个。当然，也有一口气加载好多资源的接口，比如<code>LoadAssetsAsync</code>，如果你把一个address分配给了好多不同的资源，那么这个接口将会把所有分配了这个address的资源全部给你找出来。</p>
+<table>
+<thead>
+<tr>
+<th>ℹ Tip:<br />可以通过<code>LoadAssetsAsync</code>方法的<code>MergeMode</code>参数来加载两个指定条件的交集，按上面的例子来说就是，我们可以把address和label两个key作为查找资源的条件。</th>
+</tr>
+</thead>
+</table>
+<h2 id="AssetReference-资源引用"><a href="#AssetReference-资源引用" class="headerlink" title="AssetReference 资源引用"></a>AssetReference 资源引用</h2><p>AssetReference就是一个可以被任何设置为Addressable的资源赋值的类型，我们只需要加载我们想要的那个“主资源”，跟这个“主资源“相关的（该资源所依赖的）其他资源Addressable会自动加载。</p>
+<p>通过AssetReference就可以实现在MonoBehaviour脚本或者ScriptableObject脚本中定义一个可以赋值的域(field)，这样就可以很方便地在Inspector面板中将想要设置地资源直接拖拽赋值，可以用来代替为资源分配和定义地址(address)的方式。</p>
+<p>除了最基本的 AssetReference 类型，Addressables还提供了一些特定的类型，比如：<code>AssetReferenceGameObject</code> 和 <code>AssetReferenceTexture</code>，通过他们可以限定一些资源的类型，避免在拖拽赋值到field的时候产生的类型错误。除此之外，我们还可以通过一个属性 <code>AssetReferenceUILabelRestriction</code>来限制域中赋值的资源的标签必须为特定标签。</p>
+<h2 id="Loading-and-releasing-assets-加载与释放资源"><a href="#Loading-and-releasing-assets-加载与释放资源" class="headerlink" title="Loading and releasing assets 加载与释放资源"></a>Loading and releasing assets 加载与释放资源</h2><p>通过 address 或者 label 或者 AssetReference 都可以加载你想要的资源。</p>
+<p>如果一个资源在运行时不需要再操作和使用了就必须要释放掉，否则会一直占用内存，Addressable系统对已经加载的资源会维护一个引用计数，如果这个计数归零了，Addressable系统才会自动去回收（释放）这个资源（以及对应的内存），所以我们不需要追踪记录一个资源的引用情况，我们只需要保证我们每一个加载引用的具体的资源，当我们不需要再使用的时候，把他们释放掉，就好了。</p>
+<p>比方说，当你卸载一个场景资源，场景中那些隐含的资源（隐含的资源是指啥？）是不会自动卸载的，必须通过 <code>Resources.UnloadUnusedAssets</code> 或者 <code>UnloadAsset</code> 去释放这些资源。注：如果你是在 <code>LoadSceneMode.Single</code> 模式（当加载一个场景的时候会关闭其他所有场景）下去加载场景的，那么Unity是会自动在你卸载场景的时候调用 <code>UnloadUnusedAssets</code> 去卸载其他不再使用的资源的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/11/11/Addressables%E7%B3%BB%E7%BB%9F%E6%80%BB%E8%A7%88/" data-id="ckvw7q76f0001a076d855fg93" data-title="Addressables系统总览" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-通过Addressables来简化资源管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="article-date">
@@ -90,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-id="ckvun93qw0003m8761lfj808r" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-id="ckvw7q76j0005a0768eldb7fp" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -141,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/05/hello-world/" data-id="ckvun93qo0000m876eax95ik5" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/05/hello-world/" data-id="ckvw7q76b0000a076g1rhfh32" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -323,7 +442,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvun93qt0002m8763bfn6tcd" data-title="可寻址资源管理系统" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/" data-id="ckvw7q76i0003a0769w5wdsdg" data-title="可寻址资源管理系统" class="article-share-link">Share</a>
       
       
       
@@ -361,7 +480,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/04/my-first-blog/" data-id="ckvun93qr0001m8766yvy1m5k" data-title="my first blog" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/04/my-first-blog/" data-id="ckvw7q76h0002a076fwn75qbz" data-title="my first blog" class="article-share-link">Share</a>
       
       
       
@@ -404,6 +523,14 @@
       <ul>
         
           <li>
+            <a href="/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/">在Editor中管理Addressables</a>
+          </li>
+        
+          <li>
+            <a href="/2021/11/11/Addressables%E7%B3%BB%E7%BB%9F%E6%80%BB%E8%A7%88/">Addressables系统总览</a>
+          </li>
+        
+          <li>
             <a href="/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">(no title)</a>
           </li>
         
@@ -413,10 +540,6 @@
         
           <li>
             <a href="/2021/11/04/%E5%8F%AF%E5%AF%BB%E5%9D%80%E8%B5%84%E6%BA%90/">可寻址资源管理系统</a>
-          </li>
-        
-          <li>
-            <a href="/2021/11/04/my-first-blog/">my first blog</a>
           </li>
         
       </ul>

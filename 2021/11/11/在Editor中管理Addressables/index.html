@@ -4,19 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>在Editor中管理Addressables | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Simplify your content management with Addressables Unity Addressables 官方文档">
+  <meta name="description" content="Managing Addressables in the EditorAsset ReferencesAssetReference 是一个可以用来引用可寻址化资源的类型。 AssetReference类可以在MonoBehaviour和ScriptableObject中使用，当为MonoBehaviour对象或者ScriptableObject对象添加一个可序列化的filed时，我们就可以在这个对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:title" content="在Editor中管理Addressables">
+<meta property="og:url" content="http://example.com/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Simplify your content management with Addressables Unity Addressables 官方文档">
+<meta property="og:description" content="Managing Addressables in the EditorAsset ReferencesAssetReference 是一个可以用来引用可寻址化资源的类型。 AssetReference类可以在MonoBehaviour和ScriptableObject中使用，当为MonoBehaviour对象或者ScriptableObject对象添加一个可序列化的filed时，我们就可以在这个对">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-11-08T09:52:43.933Z">
-<meta property="article:modified_time" content="2021-11-08T09:54:40.614Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111111932001.png">
+<meta property="article:published_time" content="2021-11-11T09:10:40.000Z">
+<meta property="article:modified_time" content="2021-11-12T10:03:31.152Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111111932001.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -73,26 +75,45 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-通过Addressables来简化资源管理" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-在Editor中管理Addressables" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" class="article-date">
-  <time class="dt-published" datetime="2021-11-08T09:52:43.933Z" itemprop="datePublished">2021-11-08</time>
+    <a href="/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/" class="article-date">
+  <time class="dt-published" datetime="2021-11-11T09:10:40.000Z" itemprop="datePublished">2021-11-11</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      在Editor中管理Addressables
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Simplify-your-content-management-with-Addressables"><a href="#Simplify-your-content-management-with-Addressables" class="headerlink" title="Simplify your content management with Addressables"></a>Simplify your content management with Addressables</h1><blockquote>
-<p><a target="_blank" rel="noopener" href="https://unity.com/how-to/simplify-your-content-management-addressables?_ga=2.176578790.2100314859.1636015287-351423356.1621412719">Unity Addressables 官方文档</a></p>
-</blockquote>
-
+        <h1 id="Managing-Addressables-in-the-Editor"><a href="#Managing-Addressables-in-the-Editor" class="headerlink" title="Managing Addressables in the Editor"></a>Managing Addressables in the Editor</h1><h2 id="Asset-References"><a href="#Asset-References" class="headerlink" title="Asset References"></a>Asset References</h2><p><code>AssetReference</code> 是一个可以用来引用可寻址化资源的类型。</p>
+<p>AssetReference类可以在MonoBehaviour和ScriptableObject中使用，当为MonoBehaviour对象或者ScriptableObject对象添加一个可序列化的filed时，我们就可以在这个对象的Inspector面板上去为这个field赋值，我们可以通过类型和标签来限制field的赋值类型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh//IndieAdam-0621/photocloud/blogImg/202111111932001.png" alt="AssetReference field 可以直接将资源赋值上去"></p>
+<p>上图中的各种资源引用（AssetReference可以直接用 Addressable Asset 赋值，把需要引用的资源拖拽到对应的field中去即可）</p>
+<p>如果拖拽了一个没有设置为可寻址化的资源到这里的field中，Unity将会自动把这个资源变成可寻址资源并将它添加到默认的addressables group。</p>
+<table>
+<thead>
+<tr>
+<th>⚠注意：<br />如果要将一个Addressables Group中的资源分配到 AssetReference field 中，那么这个组的 高级选项中的<strong>Include GUID in Catalog</strong> 选项必须要勾选上。<strong>Include GUID in Catalog</strong> 选项默认是勾选的。</th>
+</tr>
+</thead>
+</table>
+<h3 id="AssetReference-types"><a href="#AssetReference-types" class="headerlink" title="AssetReference types"></a>AssetReference types</h3>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2021/11/08/%E9%80%9A%E8%BF%87Addressables%E6%9D%A5%E7%AE%80%E5%8C%96%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-id="ckvw7q76j0005a0768eldb7fp" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2021/11/11/%E5%9C%A8Editor%E4%B8%AD%E7%AE%A1%E7%90%86Addressables/" data-id="ckvw7q76j0004a0764vul55l7" data-title="在Editor中管理Addressables" class="article-share-link">Share</a>
       
       
       
@@ -102,19 +123,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2021/11/11/Addressables%E7%B3%BB%E7%BB%9F%E6%80%BB%E8%A7%88/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Addressables系统总览
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/11/05/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/11/11/Addressables%E7%B3%BB%E7%BB%9F%E6%80%BB%E8%A7%88/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
+      <div class="article-nav-title">Addressables系统总览</div>
     </a>
   
 </nav>
